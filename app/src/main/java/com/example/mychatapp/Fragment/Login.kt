@@ -38,7 +38,6 @@ class Login: Fragment() {
         fragmentTransaction.replace(R.id.loginFrameLay,fragment)
         fragmentTransaction.addToBackStack("Login")
         fragmentTransaction.commit()
-        Finish()
     }
     private fun Finish(){
         activity?.finish()
@@ -47,7 +46,7 @@ class Login: Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.txtSignUp.setOnClickListener {
-            val signUp:SignUp= SignUp()
+            val signUp= SignUp()
             replaceFragment(signUp)
         }
 
