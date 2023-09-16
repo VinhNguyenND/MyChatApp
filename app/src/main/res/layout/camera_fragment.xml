@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+    <RelativeLayout
+        android:background="@color/PRIMARY_TEXT"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="0dp"
+        android:src="@drawable/flash_on_48"/>
+    </RelativeLayout>
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="7">
+       <androidx.camera.view.PreviewView
+           android:id="@+id/viewFinder"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+     </RelativeLayout>
+     <RelativeLayout
+         android:background="@color/PRIMARY_TEXT"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="0.5">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Anh"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="26sp"
+            android:textColor="#FFEB3B"/>
+     </RelativeLayout>
+     <RelativeLayout
+         android:id="@+id/groupCapture"
+         android:background="@color/PRIMARY_TEXT"
+         android:layout_width="match_parent"
+         android:layout_height="0dp"
+         android:layout_weight="1.5">
+
+         <androidx.appcompat.widget.AppCompatButton
+             android:id="@+id/buttonCapture"
+             android:text="asd"
+             android:background="@drawable/buttoncapture"
+             android:layout_width="80dp"
+             android:layout_centerHorizontal="true"
+             android:layout_centerVertical="true"
+             android:layout_height="80dp"/>
+         <TextView
+             android:id="@+id/btnHuy"
+             android:layout_width="wrap_content"
+             android:text="Huy"
+             android:layout_marginStart="20dp"
+             android:layout_centerVertical="true"
+             android:textColor="@color/TEXT_ICONS_COLOR"
+             android:textSize="32sp"
+             android:layout_height="wrap_content"/>
+
+         <ImageView
+             android:id="@+id/wrapCamera"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentEnd="true"
+             android:layout_centerVertical="true"
+             android:layout_marginEnd="20dp"
+             android:layout_marginBottom="20dp"
+             android:src="@drawable/camera_ios_48" />
+     </RelativeLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

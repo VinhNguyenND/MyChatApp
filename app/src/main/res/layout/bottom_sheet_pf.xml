@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="15dp"
+    android:layout_margin="3dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+   <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:src="@drawable/baseline_done_24"
+           android:layout_width="56dp"
+           android:layout_height="56dp"/>
+       <TextView
+           android:id="@+id/accept"
+           android:text="Xác nhận lời mơi"
+           android:textSize="26sp"
+           android:textColor="@color/PRIMARY_TEXT"
+           android:layout_gravity="center"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"/>
+   </LinearLayout>
+    <View
+        android:alpha="0.4"
+        android:background="#6C6A6A"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <LinearLayout
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+       <ImageView
+           android:src="@drawable/baseline_clear_24"
+           android:layout_width="56dp"
+           android:layout_height="56dp"/>
+        <TextView
+            android:id="@+id/deleteInvitation"
+            android:text="Xóa lời mời"
+            android:textSize="26sp"
+            android:textColor="@color/PRIMARY_TEXT"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+   </LinearLayout>
+    <View
+        android:alpha="0.4"
+        android:background="#6C6A6A"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+</LinearLayout>

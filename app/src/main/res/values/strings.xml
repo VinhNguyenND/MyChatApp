@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">chatappnews</string>
+    <string name="Sing_up_text">Sign up  your Account</string>
+    <string name="Email">Email</string>
+    <string name="Pass_Word">Pass Word</string>
+    <string name="Login">Login</string>
+    <string name="SignUp">Signup</string>
+    <string name="Create_Account">Create Your Account</string>
+    <string name="Register">Register</string>
+    <string name="account_User">Account_User</string>
+    <string name="search_hint">Search</string>
+
+   <string name="take_photo">Take Photo</string>
+   <string name="start_capture">Start Capture</string>
+   <string name="stop_capture">Stop Capture</string>
+    <string name="channel_name">mess_notify</string>
+    <string name="channel_description">channel_description</string>
+    <string name="default_notification_channel_id">notification_channel_id_1</string>
+    <string name="deleted">Đã gỡ lời mời kết bạn</string>
+    <string name="invited">đã là bạn bè</string>
+    <string name="change_profile_photo">Change Profile Photo</string>
+    <string name="log_out">log out</string>
+</resources>

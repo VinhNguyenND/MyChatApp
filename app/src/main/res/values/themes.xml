@@ -1,0 +1,20 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyChatApp" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/PRIMARY_COLOR</item>
+        <item name="colorPrimaryVariant">@color/PRIMARY_COLOR</item>
+        <item name="colorOnPrimary">@color/TEXT_ICONS_COLOR</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/DARK_PRIMARY_COLOR</item>
+        <item name="colorSecondaryVariant">@color/ACCENT_COLOR</item>
+        <item name="colorOnSecondary">@color/cardview_dark_background</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="ToolBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/PRIMARY_COLOR</item>
+    </style>
+</resources>
