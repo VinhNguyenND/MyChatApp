@@ -927,12 +927,13 @@ class AppRepository() {
                         .get()
                         .addOnCompleteListener(OnCompleteListener {
                             for (doc in it.result) {
-                                val person = doc.toObject<ChatListModel>();
-                                if (person.idOne == id)
+                                val idOne = doc.get("idOne").toString()
+                                val idTwo=doc.get("idTwo").toString()
+                                if (idOne == id)
                                     db.collection("Chats")
                                         .document(doc.id)
                                         .update("imgOne", uri)
-                                else if (person.idTwo == id)
+                                else if (idTwo == id)
                                     db.collection("Chats")
                                         .document(doc.id)
                                         .update("imgTwo", uri)
