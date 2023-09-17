@@ -18,6 +18,7 @@ import com.example.mychatapp.Adapter.UserAdapter
 import com.example.mychatapp.Interface.OnItemClickListener
 import com.example.mychatapp.Model.UserModel
 import com.example.mychatapp.R
+import com.example.mychatapp.Util.AppOwner
 import com.example.mychatapp.ViewModel.MainViewModel
 import com.example.mychatapp.databinding.ContactsfragmentBinding
 
@@ -27,8 +28,7 @@ class ContactsFragment(context:Context):Fragment() {
     private val userAdapter= UserAdapter(mContext)
     private var listUser=ArrayList<UserModel>()
     private lateinit var binding:ContactsfragmentBinding
-    private val sharedPref = mContext.getSharedPreferences("Ui.LoginSignup", Context.MODE_PRIVATE)
-    private  val result= sharedPref.getString("Uid","")
+    private  val result= AppOwner(mContext).getUid()
 
     @SuppressLint("SuspiciousIndentation")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

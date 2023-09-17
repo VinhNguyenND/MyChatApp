@@ -10,12 +10,20 @@ import com.example.mychatapp.Repository.AppRepository
 class LoginViewModel: ViewModel() {
     private var  mrepository:AppRepository = AppRepository.getInstance()
     private  var isAccount=MutableLiveData<ArrayList<Account>?>()
+    private var  signUpSuccess=MutableLiveData<Boolean>()
+    private var accountExist=MutableLiveData<Boolean>()
 
     fun checkSignUp(Email:String){
        mrepository.checkUserSignUp(Email)
     }
+    fun signSuccess():LiveData<Boolean>{
+        return  signUpSuccess
+    }
     fun addAccount(Email: String,passWord: String,Name:String){
        mrepository.addAccount(Email,passWord,Name)
+    }
+    fun userExist():LiveData<Boolean>{
+        return  accountExist
     }
    init {
        loadData()
@@ -25,6 +33,12 @@ class LoginViewModel: ViewModel() {
      mrepository.getAccount().observeForever{
          isAccount.value=it
       }
+       mrepository.getSignUpSuccess().observeForever {
+           signUpSuccess.value=it
+       }
+       mrepository.getUserExist().observeForever {
+           accountExist.value=it
+       }
    }
     fun checkLogin(Email: String, passWord: String):LiveData<ArrayList<Account>?>{
         mrepository.checkUser(Email,passWord)

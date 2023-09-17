@@ -33,6 +33,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.io.IOException
 import java.util.Collections
+import kotlin.math.E
 
 
 class AppRepository() {
@@ -45,6 +46,7 @@ class AppRepository() {
     private val messageLiveData = MutableLiveData<ArrayList<MessageModel>>()
     private val isInvited = MutableLiveData<ArrayList<Invited>>()
     private val isFriend = MutableLiveData<Boolean>()
+    private val signUpSuccess=MutableLiveData<Boolean>()
     private val profile = MutableLiveData<UserModel?>()
     private val frProfile = MutableLiveData<UserModel>()
     private val idUser = MutableLiveData<String>()
@@ -109,6 +111,12 @@ class AppRepository() {
 
     fun getChatExist(): LiveData<ChatListModel?> {
         return chatExist
+    }
+    fun getSignUpSuccess(): LiveData<Boolean>{
+        return signUpSuccess
+    }
+    fun getUserExist(): LiveData<Boolean>{
+        return already
     }
 
 //    suspend fun fetchChats(id: String) {
@@ -235,15 +243,15 @@ class AppRepository() {
     //kiem tra dang nhap
     fun checkUser(Email: String, passWord: String) {
         db.collection("Account")
-            .whereEqualTo("Email", Email)
-            .whereEqualTo("PassWord", passWord)
             .get()
             .addOnCompleteListener(OnCompleteListener {
                 if (it.isSuccessful && !it.result.isEmpty) {
                     val list = ArrayList<Account>()
                     for (document in it.result) {
                         val person = document.toObject<Account>()
-                        list.add(person)
+                        if(person.Email==Email&&person.PassWord==passWord) {
+                            list.add(person)
+                        }
                     }
                     isAccount.value = list
                 }
@@ -253,25 +261,25 @@ class AppRepository() {
             })
     }
 
-    fun getIdByEmail(Email: String) {
-        db.collection("")
-    }
 
     //kiem tra dang ky
     fun checkUserSignUp(Email: String) {
-        var alreadyEx = false
         db.collection("Account")
-            .whereEqualTo("Email", Email)
             .get()
-            .addOnCompleteListener(OnCompleteListener {
-                if (it.isSuccessful && !it.result.isEmpty) {
-                    for (document in it.result)
-                        alreadyEx = true
-                } else {
-                    alreadyEx = false
+            .addOnCompleteListener{
+                Log.d("my is mail o repository",Email.toString())
+                var idAlready=false
+                for(doc in it.result){
+                    val account=doc.toObject<Account>()
+                    if(account.Email==Email){
+                        idAlready=true
+                    }
                 }
-                already.value = alreadyEx
-            })
+                already.value=idAlready
+            }
+            .addOnFailureListener {
+                 already.value=false
+            }
     }
 
     //dang ky
@@ -289,13 +297,6 @@ class AppRepository() {
             .addOnCompleteListener(OnCompleteListener {
                 val userModel = UserModel(Email, Name, "", "", "")
                 makeUser(userModel, it.result.id);
-                val request = hashMapOf(
-                    "FromId" to "",
-                    "ReceiveId" to it.result.id,
-                    "time" to FieldValue.serverTimestamp()
-                )
-                db.collection("invited")
-                    .add(request)
             })
             .addOnFailureListener { e ->
                 Log.w(TAG, "Error adding document", e)
@@ -573,7 +574,12 @@ class AppRepository() {
                     .document(id)
                     .update("uid", it.result.id)
                     .addOnCompleteListener(OnCompleteListener { It ->
-                        Log.d("cap nhap id account thanh cong", it.result.id)
+                        if (It.isSuccessful){
+                            signUpSuccess.value=true
+                        }
+                    })
+                    .addOnFailureListener(OnFailureListener {
+                        signUpSuccess.value=false
                     })
                 Log.d("them user thanh cong", it.result.id)
             })

@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mychatapp.Adapter.UserAdapter
 import com.example.mychatapp.Model.UserModel
 import com.example.mychatapp.R
+import com.example.mychatapp.Util.AppOwner
 import com.example.mychatapp.ViewModel.MainViewModel
 import com.example.mychatapp.databinding.SearchFragmentBinding
 
@@ -32,8 +33,7 @@ class SearchFragment(context:Context):Fragment() {
     private val mainViewModel=MainViewModel.getInstance()
     private val userAdapter=UserAdapter(mContext)
     private var listUser=ArrayList<UserModel>()
-    private val sharedPref = mContext.getSharedPreferences("Ui.LoginSignup", Context.MODE_PRIVATE)
-    private  val result= sharedPref.getString("Uid","")
+    private  val result= AppOwner(mContext).getUid()
 
     override fun onCreateView(
         inflater: LayoutInflater,

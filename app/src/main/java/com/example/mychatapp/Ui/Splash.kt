@@ -25,6 +25,8 @@ class Splash : AppCompatActivity() {
         }
 
     }
+
+
     private fun change(){
       val sharedPref = this.getSharedPreferences("Ui.LoginSignup",Context.MODE_PRIVATE)
       val result= sharedPref.getString("Uid",isnull)

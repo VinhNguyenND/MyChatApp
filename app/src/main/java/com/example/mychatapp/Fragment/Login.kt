@@ -39,9 +39,6 @@ class Login: Fragment() {
         fragmentTransaction.addToBackStack("Login")
         fragmentTransaction.commit()
     }
-    private fun Finish(){
-        activity?.finish()
-    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,6 +48,7 @@ class Login: Fragment() {
         }
 
         binding.btnLogin.setOnClickListener {
+            binding.progressBar.visibility=View.VISIBLE
             val email=binding.edtEmail.text.toString()
             val passWord=binding.edtPassWord.text.toString()
             var yes=true
@@ -63,18 +61,25 @@ class Login: Fragment() {
                 yes=false
             }
             if(yes) {
-                binding.progressBar.visibility=View.VISIBLE
                 loginViewModel.checkLogin(email, passWord)
                     .observe(viewLifecycleOwner, Observer {
-                            if (it != null) {
-                                 account = it
-                                 binding.progressBar.visibility=View.INVISIBLE
-                                 activity?.let { it1 -> loginViewModel.makeSaveAccount(it1,account[0])}
-                                 val intent=Intent(activity,MainActivity::class.java)
-                                 startActivity(intent)
+                        if (it != null) {
+                            if (it.size>0) {
+                                account=it
+                                binding.progressBar.visibility=View.INVISIBLE
+                                activity?.let { it1 ->
+                                    loginViewModel.makeSaveAccount(it1,account[0])
+                                    lifecycleScope.launch {
+                                    delay(2000);
+                                    binding.progressBar.visibility=View.GONE
+                                    val intent=Intent(activity,MainActivity::class.java);
+                                    startActivity(intent)
+                                }
+                                }
                             }else{
                                 Toast.makeText(activity,"tai khoan dang nhap khong chinh xac",Toast.LENGTH_LONG).show()
                             }
+                        }
                     })
             }
 

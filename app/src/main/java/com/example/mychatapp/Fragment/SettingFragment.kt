@@ -53,18 +53,12 @@ class SettingFragment(context: Context):Fragment() {
         binding.Logout.setOnClickListener {
             startActivity()
             activity?.finish()
-            logOut()
         }
     }
     private  fun startActivity(){
         val intent = Intent(mContext, LoginSignup::class.java)
+        intent.putExtra("delete","delete")
         startActivity(intent)
-    }
-    private fun logOut(){
-        val sharedPreferences = mContext.getSharedPreferences("Ui.LoginSignup", Context.MODE_PRIVATE)
-        val editor = sharedPreferences.edit()
-        editor.remove("TênKey")
-        editor.apply()
     }
     private fun makeView(){
         binding.pfProgress.visibility=View.VISIBLE

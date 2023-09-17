@@ -31,8 +31,7 @@ class RequestFragment(context:Context):Fragment() {
     private  var lstRequest=ArrayList<UserModel>()
     private lateinit var fragmentActivity:FragmentActivity
     private lateinit var menuHost: MenuHost
-    private val sharedPref = mContext.getSharedPreferences("Ui.LoginSignup", Context.MODE_PRIVATE)
-    private  val result= sharedPref.getString("Uid","")
+    private  val result= AppOwner(mContext).getUid()
 
     override fun onCreateView(
         inflater: LayoutInflater,

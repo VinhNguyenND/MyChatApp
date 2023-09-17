@@ -18,6 +18,7 @@ import com.example.mychatapp.Interface.OnItemClickListener
 import com.example.mychatapp.Model.ChatListModel
 import com.example.mychatapp.Model.UserModel
 import com.example.mychatapp.R
+import com.example.mychatapp.Util.AppOwner
 import com.example.mychatapp.ViewModel.MainViewModel
 import com.example.mychatapp.ViewModel.MessageViewModel
 import com.example.mychatapp.databinding.ChatsfragmentBinding
@@ -30,8 +31,7 @@ class ChatsFragment(context: Context):Fragment(){
     private  var listChats=ArrayList<ChatListModel>()
     private val mContext=context
     private lateinit var chatsAdapter:ChatsAdapter
-    private val sharedPref = mContext.getSharedPreferences("Ui.LoginSignup", Context.MODE_PRIVATE)
-    private  val result= sharedPref.getString("Uid","")
+    private  val result= AppOwner(mContext).getUid()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
